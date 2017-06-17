@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Ostraca</string>
+
+    <string name="sp_prompt">時限</string>
+    <string-array name="sp_period">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

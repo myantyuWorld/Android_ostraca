@@ -24,7 +24,7 @@ package com.example.yuichi_oba.ostraca.tools;
 //    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
 //        /*****************/
-//            /*  // TODO: 2017/06/18  ビューをクリックしたロジックはここへ実装   */
+//            /*  // DO: 2017/06/18  ビューをクリックしたロジックはここへ実装   */
 //        /*****************/
 //        view.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +21,7 @@ public class Util {
     static final String GET = "GET";
 
     /***
-     * HTTPの接続状態の設定を行うメソッド
+     * HTTPの接続状態の設定を行うメソッド--GET--
      * @param urlStr
      * @param token
      * @return
@@ -35,6 +36,30 @@ public class Util {
         c = (HttpURLConnection) url.openConnection();
         c.setRequestMethod(GET);
         c.setRequestProperty("Content-type", "text/plain");
+
+        return c;
+    }
+
+    /***
+     * HTTPの接続状態の設定を行うメソッド--POST--
+     * リクエストプロパ―→ JSON形式で固定
+     * @param urlStr
+     * @param token
+     * @return
+     * @throws IOException
+     */
+    public static HttpURLConnection setConnectURLPost(String urlStr, String token, String json) throws IOException {
+        Log.d("call", "call Util.setConnectURL() ");
+        HttpURLConnection c = null;
+        URL url = new URL(urlStr + PARAM_1 + token);
+        Log.d("call", urlStr + PARAM_1 + token);
+
+        c = (HttpURLConnection) url.openConnection();
+        c.setRequestMethod("POST");
+        c.setRequestProperty("Content-type", "application/json");
+        OutputStreamWriter out = new OutputStreamWriter(c.getOutputStream());
+        out.write(json);
+        out.close();
 
         return c;
     }

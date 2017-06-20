@@ -17,7 +17,8 @@ public enum Enum_URL {
     TEACHERS_TIMETABLE_SUBJECTS(NameConst.IP_ADDR + "/teachers/timetable/subjects"),
     TEACHERS_TIMETABLE_TEACHERS(NameConst.IP_ADDR + "/teachers/timetable/teachers"),
     TEACHERS_TIMETABLE_TIMETABLES(NameConst.IP_ADDR + "/teachers/timetable/timetables"),
-    STUDENTS(NameConst.IP_ADDR + "/students")
+    STUDENTS(NameConst.IP_ADDR + "/students/")
+
     ;
 
     private final String text;

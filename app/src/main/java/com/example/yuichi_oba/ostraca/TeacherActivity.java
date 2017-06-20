@@ -23,6 +23,7 @@ import com.example.yuichi_oba.ostraca.models.Subject;
 import com.example.yuichi_oba.ostraca.models.Teacher;
 import com.example.yuichi_oba.ostraca.tools.Enum_URL;
 import com.example.yuichi_oba.ostraca.tools.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -268,18 +269,34 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
 
         @Override
         protected String doInBackground(Object... objects) {
-            AttendList attendList = (AttendList) objects[0];
+            Log.d(TAG, "call PostAttendAsync--doInBackGround()");
+            String json = objects[0].toString();
+            Log.d(TAG, json);
+            String result = null;
 
             try {
                 // 1
-                HttpURLConnection c = Util.setConnectURL(Enum_URL.TEACHERS_CLASS.getText(), teacher.getAccessToken());
+//                HttpURLConnection c = Util.setConnectURL(Enum_URL.TEACHERS_CLASS.getText(), teacher.getAccessToken());
+                // POST /teachers/class
+                // データは、↓
+                // {"common":{"att_date":"2017-06-20","att_period":1,"sub_id":"0001"},
+                // "students":[{"att_attend":1,"stu_id":"5151002"},{"att_attend":1,"stu_id":"5151021"},{"att_attend":1,"stu_id":"5151042"}]}
+                HttpURLConnection c = Util.setConnectURLPost(Enum_URL.TEACHERS_CLASS.getText(), teacher.getAccessToken(), json);
                 // 2
-                String result = Util.makeRequestToString(c);
+                result = Util.makeRequestToString(c);
                 // 3
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d(TAG, "call PostAttendAsync--onPostExecute()");
+            super.onPostExecute(result);
+
+            Toast.makeText(TeacherActivity.this, "result --- " + result, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -417,11 +434,23 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
         );
         AttendList attendList = new AttendList(common, data);
         // debug
+        // これを、アクセストークン付きで、RESTへPOSTする
         attendList.show();
-        // TODO: 2017/06/18
+        // DO: 2017/06/18 attendList の JSON化
+        ObjectMapper mapper = new ObjectMapper();
+        String json = null;
+        try {
+            json = mapper.writeValueAsString(attendList);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, json);
+        // TODO: 2017/06/20 非同期処理で、JSONをPOSTする
         /*****************/
         /*  ここへ実装   */
         /*****************/
+        new PostAttendAsync().execute(json);
+
 
     }
 

@@ -4,7 +4,8 @@
     android:id="@+id/activity_teacher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yuichi_oba.ostraca.TeacherActivity">
+    tools:context="com.example.yuichi_oba.ostraca.TeacherActivity"
+    android:background="@drawable/hero_img">
 
     <LinearLayout
         android:id="@+id/liner1"

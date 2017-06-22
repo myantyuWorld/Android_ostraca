@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_menu"
     android:layout_width="match_parent"
@@ -8,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.yuichi_oba.ostraca.MenuActivity">
+    tools:context="com.example.yuichi_oba.ostraca.MenuActivity"
+    android:background="@drawable/hero_img">
 
 
     <TextView
@@ -20,33 +22,22 @@
         android:layout_marginTop="24dp"
         android:id="@+id/txt_menu_tea_name" />
 
-    <Button
-        android:text="出席記録"
+    <TextView
+        android:text="教員名"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:id="@+id/bn_menu_attendinput"
-        android:layout_below="@+id/txt_menu_tea_name"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="出席状況"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/bn_menu_attendlist"
-        android:layout_below="@+id/bn_menu_attendinput"
-        android:layout_alignStart="@+id/bn_menu_attendinput" />
+        android:layout_alignTop="@+id/txt_menu_tea_name"
+        android:layout_alignStart="@+id/textView6"
+        android:id="@+id/textView7" />
 
     <TextView
         android:text="教員ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/txt_menu_tea_id"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/bn_menu_attendinput"
-        android:layout_marginStart="75dp" />
+        android:layout_alignEnd="@+id/ibn_input" />
 
     <TextView
         android:text="教員ID"
@@ -55,13 +46,24 @@
         android:id="@+id/textView6"
         android:layout_alignBaseline="@+id/txt_menu_tea_id"
         android:layout_alignBottom="@+id/txt_menu_tea_id"
-        android:layout_toStartOf="@+id/bn_menu_attendinput" />
+        android:layout_alignStart="@+id/ibn_input" />
 
-    <TextView
-        android:text="教員名"
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/txt_menu_tea_name"
-        android:layout_alignStart="@+id/textView6"
-        android:id="@+id/textView7" />
+        app:srcCompat="@drawable/ic_border_color_black_24dp"
+        android:id="@+id/ibn_input"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/txt_menu_tea_name"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_library_books_black_24dp"
+        android:id="@+id/ibn_attend"
+        android:layout_marginBottom="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/txt_menu_tea_name" />
+
 </RelativeLayout>

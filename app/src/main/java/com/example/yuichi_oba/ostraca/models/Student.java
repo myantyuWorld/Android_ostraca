@@ -1,18 +1,30 @@
 package com.example.yuichi_oba.ostraca.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 /**
  * Created by Yuichi-Oba on 2017/06/13.
  */
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Student implements Serializable {
 
     public String stu_id;
     public String stu_name;
     public String stu_rubi;
     public String stu_mailaddr;
-    public String accessToken;
+    public String accessToken;  // JSON変換対象外とする
+
+    public Student() {
+    }
+
+    public Student(String stu_id, String stu_name, String stu_rubi, String stu_mailaddr) {
+        this.stu_id = stu_id;
+        this.stu_name = stu_name;
+        this.stu_rubi = stu_rubi;
+        this.stu_mailaddr = stu_mailaddr;
+    }
 
     public String getAccessToken() {
         return accessToken;
@@ -54,10 +66,5 @@ public class Student implements Serializable {
         this.stu_mailaddr = stu_mailaddr;
     }
 
-    public Student(String stu_id, String stu_name, String stu_rubi, String stu_mailaddr) {
-        this.stu_id = stu_id;
-        this.stu_name = stu_name;
-        this.stu_rubi = stu_rubi;
-        this.stu_mailaddr = stu_mailaddr;
-    }
+
 }

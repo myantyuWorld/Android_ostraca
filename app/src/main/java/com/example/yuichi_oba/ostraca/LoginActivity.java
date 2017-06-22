@@ -146,14 +146,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.d("call", "result is student instance!");
                 // DO: 2017/06/13   引数とともにStudentアクティビティに遷移する
                 Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+                intent.putExtra("number", 0);
                 intent.putExtra("student", (Student) o);
                 startActivity(intent);
             } else if (o instanceof Teacher) {    // 引数の型が　”Teacherクラス”の場合
                 Log.d("call", "result is teacher instance!");
-                // DO: 2017/06/13   引数とともにTeacherアクティビティに遷移する
-                Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
-                intent.putExtra("teacher", (Teacher) o);
-                startActivity(intent);
+                Intent intent;
+                switch (((Teacher) o).getTea_flg()) {
+                    case 0:
+                        Log.d(TAG, "--- 非常勤の教員 ---");
+                        // DO: 2017/06/13   引数とともにTeacherアクティビティに遷移する
+                        intent = new Intent(getApplicationContext(), TeacherActivity.class);
+                        intent.putExtra("teacher", (Teacher) o);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        Log.d(TAG, "--- 常勤の教員 ---");
+                        // DO: 2017/06/22 常勤の場合は、出席記録 ＋ 出席状況が見れるメニュー画面に飛ぶ
+                        intent = new Intent(getApplicationContext(), MenuActivity.class);
+                        intent.putExtra("teacher", (Teacher) o);
+                        startActivity(intent);
+                        break;
+                }
             }
         }
     }

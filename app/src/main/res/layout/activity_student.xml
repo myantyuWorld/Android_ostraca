@@ -37,7 +37,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:id="@+id/stu_listview"
+        android:id="@+id/listview_ts"
         android:minHeight="150dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"

@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.yuichi_oba.ostraca.StudentActivity">
+    tools:context="com.example.yuichi_oba.ostraca.StudentActivity"
+    android:background="@drawable/hero_img">
 
     <LinearLayout
         android:layout_width="match_parent"

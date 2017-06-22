@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.yuichi_oba.ostraca.models.Student;
@@ -98,22 +98,29 @@ public class MenuActivity extends AppCompatActivity {
         /***
          * 「出席記録」ボタン押下時の処理
          */
-        Button bnMenuInput = (Button) findViewById(R.id.bn_menu_attendinput);
-        bnMenuInput.setOnClickListener(new View.OnClickListener() {
+        ImageButton ibn_input = (ImageButton) findViewById(R.id.ibn_input);
+        ibn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // 出席記録アクティビティに遷移させる
                 Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
                 intent.putExtra(TEACHER, teacher);
                 startActivity(intent);
             }
         });
+//        Button bnMenuInput = (Button) findViewById(R.id.bn_menu_attendinput);
+//        bnMenuInput.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
 
         /***
          * 「出席状況」ボタン押下時の処理
          */
-        Button bnMenuAttendList = (Button) findViewById(R.id.bn_menu_attendlist);
-        bnMenuAttendList.setOnClickListener(new View.OnClickListener() {
+        ImageButton ibn_attend = (ImageButton) findViewById(R.id.ibn_attend);
+        ibn_attend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /***
@@ -123,6 +130,12 @@ public class MenuActivity extends AppCompatActivity {
                 new TakingChargeStudentAsync().execute();
             }
         });
+//        Button bnMenuAttendList = (Button) findViewById(R.id.bn_menu_attendlist);
+//        bnMenuAttendList.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
 
     }
 }

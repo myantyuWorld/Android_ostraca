@@ -2,10 +2,13 @@ package com.example.yuichi_oba.ostraca;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,6 +33,8 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static com.example.yuichi_oba.ostraca.MenuActivity.TEACHER;
 
 /***
  * [{"stu_id":"5151021","stu_name":"大馬 裕一","sub_name":"システム構築","attend":"2","total_lesson":"60","attend_rate":"3"}]
@@ -200,6 +205,29 @@ public class StudentActivity extends AppCompatActivity {
                 init_teacher_version();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_tea_menu, menu);
+        if (getIntent().getIntExtra("number", 0) == 1) {
+            return true;
+
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        // 選択されたメニューが 「出席記録」ならば実行
+        if (item.getTitle().equals("出席記録")) {
+            // 出席記録アクティビティに遷移させる
+            Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
+            intent.putExtra(TEACHER, teacher);
+            startActivity(intent);
+        }
+        return true;
     }
 
     private void init_teacher_version() {

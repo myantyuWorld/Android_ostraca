@@ -3,10 +3,13 @@ package com.example.yuichi_oba.ostraca;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -268,7 +271,7 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
      * -----非同期処理class
      * RESTへ出席記録をPOSTする
      *******************************/
-    private class PostAttendAsync extends AsyncTask<Object, Void, String>{
+    private class PostAttendAsync extends AsyncTask<Object, Void, String> {
 
         @Override
         protected String doInBackground(Object... objects) {
@@ -305,8 +308,65 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    /***
+     * [ 非同期処理 ]ログインした教員の受け持ち学生リストを取得するクラス
+     */
+    private class TakingChargeStudentAsync extends AsyncTask<Void, Void, String> {
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            Log.d(TAG, "call TakingChargeStudentAsync--doInBackGround()");
+
+            try {
+                // 1
+                HttpURLConnection c = Util.setConnectURL(Enum_URL.TEACHERS_CLASS.getText(), teacher.getAccessToken() + "&tea_id=" + teacher.getTea_id());
+                // 2
+                String result = Util.makeRequestToString(c);
+                Log.d(TAG, result);
+
+                if (!result.isEmpty()) {
+                    return result;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d(TAG, "call onPostExecute()");
+            super.onPostExecute(result);
+
+            /***
+             *  結果がNULLでなければ、JSONを変換して、teacherオブジェクトにセットする
+             */
+            List<com.example.yuichi_oba.ostraca.models.Student> students = new ArrayList<>();
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                // JSON=>Java
+                students = mapper.readValue(result, new TypeReference<List<com.example.yuichi_oba.ostraca.models.Student>>() {
+                });
+                // 変数にセットする
+                teacher.setStudentList(students);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // debug
+            teacher.show();
+            /***
+             *  「教員用」出席状況アクティビティに遷移させる
+             */
+            Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+            intent.putExtra("number", 1);
+            intent.putExtra("teacher", teacher);
+            startActivity(intent);
+
+        }
+    }
+
     /********************************
-     *  リストビュー用の自作アダプタ
+     * リストビュー用の自作アダプタ
      *******************************/
     private class MyListAdapter extends BaseAdapter {
 
@@ -421,6 +481,28 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
         init();
     }
 
+    /********************************
+     * メニュー定義ファイルを基にオプションメニューを生成
+     *******************************/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_tea_menu, menu);
+        return true;
+    }
+
+    /********************************
+     * メニュー選択時の処理
+     *******************************/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        // 選択されたメニューが 「出席状況」ならば実行
+        if (item.getTitle().equals("出席状況") && teacher.getTea_flg() == 1) {
+            new TakingChargeStudentAsync().execute();
+        }
+        return true;
+    }
+
     /***
      * 送信ボタン押下時の処理
      *
@@ -462,7 +544,7 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
             stringBuffer.append("[  " + item.getStu_id() + " : ");
             stringBuffer.append(item.getStu_name() + " :");
             Log.d(TAG, item.getStu_id() + " : " + item.getStu_name());
-            String[] strings = new String[]{"出席","欠席", "遅刻","公欠"};
+            String[] strings = new String[]{"出席", "欠席", "遅刻", "公欠"};
             for (int i = 0; i < item.getAttend().length; i++) {
                 if (item.getAttend()[i]) {
                     stringBuffer.append(strings[i] + "  ]");

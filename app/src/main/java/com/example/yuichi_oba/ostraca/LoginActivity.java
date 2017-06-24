@@ -168,8 +168,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         break;
                     case 1:
                         Log.d(TAG, "--- 常勤の教員 ---");
-                        // DO: 2017/06/22 常勤の場合は、出席記録 ＋ 出席状況が見れるメニュー画面に飛ぶ
-                        intent = new Intent(getApplicationContext(), MenuActivity.class);
+                        intent = new Intent(getApplicationContext(), TeacherActivity.class);
                         intent.putExtra("teacher", (Teacher) o);
                         startActivity(intent);
                         break;

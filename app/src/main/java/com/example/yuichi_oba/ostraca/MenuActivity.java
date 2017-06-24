@@ -126,7 +126,7 @@ public class MenuActivity extends AppCompatActivity {
                 /***
                  * 教員用の 出席状況アクティビティに遷移させる
                  */
-                // TODO: 2017/06/22 非同期処理 --- 当該教員IDの受け持ち学生リストを取得
+                // DO: 2017/06/22 非同期処理 --- 当該教員IDの受け持ち学生リストを取得
                 new TakingChargeStudentAsync().execute();
             }
         });

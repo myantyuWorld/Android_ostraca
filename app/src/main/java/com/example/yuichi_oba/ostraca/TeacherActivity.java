@@ -1,6 +1,7 @@
 package com.example.yuichi_oba.ostraca;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.example.yuichi_oba.ostraca.models.ListItem;
 import com.example.yuichi_oba.ostraca.models.Subject;
 import com.example.yuichi_oba.ostraca.models.Teacher;
 import com.example.yuichi_oba.ostraca.tools.Enum_URL;
+import com.example.yuichi_oba.ostraca.tools.MyDialogFragment;
 import com.example.yuichi_oba.ostraca.tools.Util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -296,7 +298,9 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
             Log.d(TAG, "call PostAttendAsync--onPostExecute()");
             super.onPostExecute(result);
 
-            Toast.makeText(TeacherActivity.this, "result --- " + result, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(TeacherActivity.this, "result --- " + result, Toast.LENGTH_SHORT).show();
+            DialogFragment dialogFragment = new MyDialogFragment();
+            dialogFragment.show(getFragmentManager(), "dialog_basic");
         }
     }
 
@@ -468,7 +472,8 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
             }
             stringBuffer.append("\n");
         }
-        Toast.makeText(this, stringBuffer.toString(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, stringBuffer.toString());
+//        Toast.makeText(this, stringBuffer.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private void init() {

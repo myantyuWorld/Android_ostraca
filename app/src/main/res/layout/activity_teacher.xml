@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.yuichi_oba.ostraca.TeacherActivity"
-    android:background="@drawable/hero_img">
+    android:background="@drawable/bg_grad">
 
     <LinearLayout
         android:id="@+id/liner1"
@@ -53,7 +53,8 @@
             android:layout_weight="1"
             android:entries="@array/sp_period"
             android:prompt="@string/sp_prompt"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:spinnerMode="dialog" />
     </LinearLayout>
 
     <ListView

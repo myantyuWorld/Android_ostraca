@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.yuichi_oba.ostraca.models.Student;
 import com.example.yuichi_oba.ostraca.models.Subject;
@@ -137,7 +137,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // 引数がnullの場合エラー
             if (o == null) {
                 // TODO: 2017/06/13 エラーメッセージの出力
-                Toast.makeText(LoginActivity.this, "ログインに失敗しました", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(getApplicationContext())
+                        .setTitle("警告")
+                        .setMessage("ログインに失敗しました！")
+                        .setPositiveButton("OK", null)
+                        .show();
+
+//                Toast.makeText(LoginActivity.this, "ログインに失敗しました", Toast.LENGTH_SHORT).show();
                 Log.d("call", "o is null");
                 return;
             }

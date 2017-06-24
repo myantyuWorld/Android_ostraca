@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuichi_oba.ostraca.StudentActivity"
-    android:background="@drawable/hero_img">
+    android:background="@drawable/bg_grad">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,7 +60,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="2"
                 android:textAlignment="center"
-                android:spinnerMode="dialog" />
+                android:spinnerMode="dialog"
+                android:elevation="10dp" />
 
         </LinearLayout>
     </LinearLayout>

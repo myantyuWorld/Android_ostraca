@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -449,10 +450,7 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
         Log.d(TAG, json);
-        // TODO: 2017/06/20 非同期処理で、JSONをPOSTする
-        /*****************/
-        /*  ここへ実装   */
-        /*****************/
+        // DO: 2017/06/20 非同期処理で、JSONをPOSTする
         new PostAttendAsync().execute(json);
 
 
@@ -530,8 +528,10 @@ public class TeacherActivity extends AppCompatActivity implements View.OnClickLi
         /********************************
          *  送信ボタンの初期設定
          *******************************/
-        bn_send = (Button) findViewById(R.id.bn_send);
-        bn_send.setOnClickListener(this);
+//        bn_send = (Button) findViewById(R.id.bn_send);
+//        bn_send.setOnClickListener(this);
+        ImageButton ibn_post = (ImageButton) findViewById(R.id.ibn_postRest);
+        ibn_post.setOnClickListener(this);
     }
 
 

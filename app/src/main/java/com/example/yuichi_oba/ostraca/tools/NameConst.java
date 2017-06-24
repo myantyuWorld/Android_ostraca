@@ -81,5 +81,6 @@ public class NameConst {
 	public static final int NUM_STU_NAME = 1;
 //	public static final String TEA_ID = "tea_id";
 //	public static final String TEA_NAME = "tea_name";
+// TODO: 2017/06/24 学校でテストする際は、要変更！ 
 	public static final String IP_ADDR = "http://192.168.179.13:9000";
 }

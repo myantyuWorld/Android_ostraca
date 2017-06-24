@@ -34,8 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.example.yuichi_oba.ostraca.MenuActivity.TEACHER;
-
 /***
  * [{"stu_id":"5151021","stu_name":"大馬 裕一","sub_name":"システム構築","attend":"2","total_lesson":"60","attend_rate":"3"}]
  */
@@ -184,6 +182,7 @@ public class StudentActivity extends AppCompatActivity {
     }
 
     private static final String TAG = StudentActivity.class.getSimpleName();
+    public static final String TEACHER = "teacher";
     private Student student;
     private Teacher teacher;
     private List<StudentListItem> data;

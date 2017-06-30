@@ -205,25 +205,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        Auth.GoogleSignInApi.signOut(googleApiClient);
 //    }
 
-    /***
-     * SignInボタン押下時の処理
-     *
-     * @param view
-     */
+    /// _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // _/_/
+    // _/_/ SignInボタン押下時の処理
+    // _/_/
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     @Override
     public void onClick(View view) {
         signIn();
     }
 
-    /***
-     * アクティビティ実行の結果の処理を行うオーバーライドメソッド
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // _/_/
+    // _/_/ アクティビティ実行の結果の処理を行うオーバーライドメソッド
+    // _/_/
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQ_CODE) {
@@ -237,9 +236,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
-    /***
-     * 初期化メソッド
-     */
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // _/_/
+    // _/_/ 初期化メソッド
+    // _/_/
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     private void init() {
         signInButton = (SignInButton) findViewById(R.id.bn_signIn);
         signInButton.setOnClickListener(this);
@@ -248,19 +249,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
     }
 
-    /***
-     * Googleサインインを行うメソッド
-     */
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // _/_/
+    // _/_/ Googleサインインを行うメソッド
+    // _/_/
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     private void signIn() {
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(intent, REQ_CODE);
     }
 
-    /***
-     * Google認証を行った結果に応じた処理を行うメソッド
-     *
-     * @param result
-     */
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // _/_/
+    // _/_/ Google認証を行った結果に応じた処理を行うメソッド
+    // _/_/
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     private void handleResult(GoogleSignInResult result) {
         Log.d("call", "call handleResult()");
         // Google認証が成功した場合
